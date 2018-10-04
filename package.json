@@ -1,0 +1,19 @@
+{
+  "name": "congressionapp2018",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/llGaetanll/CongressionApp2018.git"
+  },
+  "author": "David Krajewski, Gaetan Almela",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/llGaetanll/CongressionApp2018/issues"
+  },
+  "homepage": "https://github.com/llGaetanll/CongressionApp2018#readme"
+}
