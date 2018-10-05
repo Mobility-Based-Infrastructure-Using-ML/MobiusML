@@ -1,14 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Webcam Game</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-  <script src="index.js"></script>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CAC2018</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="webcam.js"></script>
+    <style>
+      #container {
+          margin: 0px auto;
+          width: 500px;
+          height: 375px;
+          border: 10px #333 solid;
+      }
+      #webcam {
+          width: 500px;
+          height: 375px;
+          background-color: #666;
+      }
+      </style>
+
+     
 </head>
 <body>
+    <b>They always ask where is perry, but they never ask HOW is perry.</b>
+    <div id="container">
+        <video autoplay="true" id="webcam">
+         
+        </video>
+    </div>
+
+    <script>
+
+        var video = document.getElementById("webcam");
+ 
+        var webcam = new Webcam(video)
+
+      </script>
+
+<!-- 
+      <div class="panel joystick-panel">
+
+        <div class="panel-row panel-row-top">
   
+          <div class="panel-cell panel-cell-left panel-cell-fill">
+            <p class="help-text">
+            Click to add the <br>
+            current camera <br>
+            view as an example <br>
+            for that control
+            </p>
+          </div><!-- ./panel-cell -->
+  
+  
+
+
 </body>
 </html>
