@@ -1,30 +1,46 @@
+/**
+ * @license
+ * Copyright 2018 Google LLC. All Rights Reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * =============================================================================
+ */
 import * as tf from '@tensorflow/tfjs';
 
-const CONTROLS = ['front', 'back', 'left', 'right'];
-const CONTROL_CODES = [38, 40, 37, 39]; 
+const CONTROLS = ['up', 'down', 'left', 'right'];
+const CONTROL_CODES = [38, 40, 37, 39];
 
-export function init() { // that function can be used elsewhere
-  document.getElementById('controller').style.display = ''; // this has all the training 
+export function init() {
+  document.getElementById('controller').style.display = '';
   statusElement.style.display = 'none';
 }
 
-const trainStatusElement = document.getElementById('train-status'); // the button called train model
+const trainStatusElement = document.getElementById('train-status');
 
 // Set hyper params from UI values.
-const learningRateElement = document.getElementById('learningRate'); // the button called train model
+const learningRateElement = document.getElementById('learningRate');
 export const getLearningRate = () => +learningRateElement.value;
 
-const batchSizeFractionElement = document.getElementById('batchSizeFraction'); // dropdown selector
+const batchSizeFractionElement = document.getElementById('batchSizeFraction');
 export const getBatchSizeFraction = () => +batchSizeFractionElement.value;
 
-const epochsElement = document.getElementById('epochs'); // dropdown selector
+const epochsElement = document.getElementById('epochs');
 export const getEpochs = () => +epochsElement.value;
 
-const denseUnitsElement = document.getElementById('dense-units'); // dropdown selector
+const denseUnitsElement = document.getElementById('dense-units');
 export const getDenseUnits = () => +denseUnitsElement.value;
 const statusElement = document.getElementById('status');
 
-export function startPacman() { 
+export function startPacman() {
   google.pacman.startGameplay();
 }
 
