@@ -41,11 +41,11 @@ export const getDenseUnits = () => +denseUnitsElement.value;
 const statusElement = document.getElementById('status');
 
 export function startPacman() {
-  google.pacman.startGameplay();
+  // google.pacman.startGameplay();
 }
 
 export function predictClass(classId) {
-  google.pacman.keyPressed(CONTROL_CODES[classId]);
+  // google.pacman.keyPressed(CONTROL_CODES[classId]);
   document.body.setAttribute('data-active', CONTROLS[classId]);
 }
 
@@ -56,7 +56,7 @@ export function donePredicting() {
   statusElement.style.visibility = 'hidden';
 }
 export function trainStatus(status) {
-  trainStatusElement.innerText = status;
+  // trainStatusElement.innerText = status;
 }
 
 export let addExampleHandler;
@@ -99,10 +99,12 @@ leftButton.addEventListener('mouseup', () => mouseDown = false);
 rightButton.addEventListener('mousedown', () => handler(3));
 rightButton.addEventListener('mouseup', () => mouseDown = false);
 
+// let's make these thumbnails bigger so it's easier to see
 export function drawThumb(img, label) {
   if (thumbDisplayed[label] == null) {
     const thumbCanvas = document.getElementById(CONTROLS[label] + '-thumb');
     draw(img, thumbCanvas);
+    console.log(label, ' getting detected!');
   }
 }
 

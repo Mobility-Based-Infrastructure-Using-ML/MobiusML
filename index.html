@@ -25,22 +25,11 @@ limitations under the License.
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <header>
-    Turn your <b>Web Camera</b> into a controller using a <b>Neural Network</b>.
-  </header>
   <div id="no-webcam">
       No webcam found. <br/>
       To use this demo, use a device with a webcam.
     </div>
   <!-- Top -->
-  <div id="pacman-container">
-    <div id="logo">
-      <div id="logo-l">
-        <div id="logo-b">
-        </div>
-      </div>
-    </div>
-  </div>
 
   <div id="status">Loading mobilenet...</div>
 
@@ -50,14 +39,8 @@ limitations under the License.
 
       <!-- Big buttons. -->
       <div class="panel-row big-buttons">
-        <button id="train">
-          <img width="66" height="66" src="./images/button.svg" />
-          <span id="train-status">TRAIN MODEL</span>
-        </button>
-        <button id="predict">
-          <img width="66" height="66" src="./images/button.svg" />
-          <span>PLAY</span>
-        </button>
+        <button id="train" class="button">TRAIN</button>
+        <button id="predict" class="button">RUN</button>
       </div><!-- /.panel-row -->
 
       <div class="panel-row params-webcam-row">
@@ -221,8 +204,6 @@ limitations under the License.
     </div><!-- /.panel -->
 
   </div><!-- /#controller -->
-
-  <p id="copyright">PAC-MAN&trade; &copy; BANDAI NAMCO Entertainment Inc.</p>
 
   <script src="https://storage.googleapis.com/tfjs-examples/assets/webcam-transfer-learning/pacman-google.js"></script>
   <script src="index.js"></script>
