@@ -15,11 +15,20 @@
  * =============================================================================
  */
 
+ @font-face {
+  font-family: 'product_sansregular';
+  src: url('./fonts/product_sans_regular-webfont.woff2') format('woff2'),
+       url('./fonts/product_sans_regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html, body {
-  background: #f5f5f5;
+  background: #fff;
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 body {
   display: flex;
@@ -157,11 +166,23 @@ button:focus {
   white-space: nowrap;
 }
 .button {
-  margin: 5px 8px;
+  margin: 0px 4px;
+  padding: 6px 16px;
+  cursor: pointer;
   background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 40px;
+  border: none;
+  color: #3d3d3d;
+  font-size: 20px;
+  border-radius: 4px;
+  box-shadow: 0 0px 0px rgba(0,0,0,0.1), 0 0px 33px rgba(0,0,0,0.1);
+  font-family: 'product_sansregular';
+  transition-duration: 0.3s;
 }
+
+.button:hover {
+  box-shadow: 0 0px 0px rgba(0,0,0,0.1), 0 0px 33px rgba(0,0,0,0.3);
+}
+
 .params-webcam-row {
   align-items: flex-start;
   display: flex;
@@ -193,11 +214,9 @@ button:focus {
 .hyper-params {
   display: flex;
   flex-direction: column;
-  margin-left: 12px;
 }
 .dropdown {
   flex-direction: column;
-  width: 110px;
   margin-bottom: 10px;
 }
 .dropdown label {
@@ -206,6 +225,7 @@ button:focus {
   display: block;
   font-weight: 300;
   line-height: 1;
+  margin-bottom: 3px;
 }
 .dropdown .select {
   position: relative;
@@ -339,4 +359,159 @@ button:focus {
   color: white;
   padding: 30px;
   line-height: 30px;
+}
+
+
+/* NEW UI */
+
+h1 {
+  font-family: 'product_sansregular';
+  color: #adb8c5;
+  margin-left: 30px;
+}
+
+.content {
+  background-color: #f3f5f8;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.circles {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings {
+  display: flex;
+  width: 300px;
+  height: 100%;
+  border-right: 5px solid #fff;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.cam-circle {
+  cursor: pointer;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid #eee; 
+  background-color: #fff;
+  box-shadow: 0 0px 0px rgba(0,0,0,0.1), 0 0px 33px rgba(0,0,0,0.1);
+  position: absolute;
+}
+
+.cam-circle.selected {
+  box-shadow: 0 0px 0px rgba(123, 163, 210, 1), 0 0px 33px rgba(123, 163, 210, 1);
+  border: 1px solid rgba(123, 163, 210, .5);
+}
+
+.cam-circle.main {
+  width: 400px;
+  height: 400px;
+}
+
+.select {
+  all: unset;
+  width: 60px;
+  text-align: center;
+  display: block;
+  padding: 7px 14px;
+  font-size: 16px;
+  font-family: 'product_sansregular';
+  color: #818181;
+  font-weight: 300;
+  border-radius: 3px;
+  background: #ffffff;
+}
+
+.buttons {
+  margin-bottom: 20px;
+}
+
+@keyframes slide-top {
+  0% {
+    -webkit-transform: translateY(0);
+  }
+  25% {
+    -webkit-transform: translateY(-330px);
+  }
+  50% {
+    -webkit-transform: translateY(-310px);
+  }
+  75% {
+    -webkit-transform: translateY(-340px);
+  }
+  100% {
+    -webkit-transform: translateY(-330px);
+  }
+}
+
+@keyframes slide-bottom {
+  0% {
+    -webkit-transform: translateY(0);
+  }
+  25% {
+    -webkit-transform: translateY(330px);
+  }
+  50% {
+    -webkit-transform: translateY(310px);
+  }
+  75% {
+    -webkit-transform: translateY(340px);
+  }
+  100% {
+    -webkit-transform: translateY(330px);
+  }
+}
+
+@keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(0);
+  }
+  25% {
+    -webkit-transform: translateX(-330px);
+  }
+  50% {
+    -webkit-transform: translateX(-310px);
+  }
+  75% {
+    -webkit-transform: translateX(-340px);
+  }
+  100% {
+    -webkit-transform: translateX(-330px);
+  }
+}
+
+@keyframes slide-right {
+  0% {
+    -webkit-transform: translateX(0);
+  }
+  25% {
+    -webkit-transform: translateX(330px);
+  }
+  50% {
+    -webkit-transform: translateX(310px);
+  }
+  75% {
+    -webkit-transform: translateX(340px);
+  }
+  100% {
+    -webkit-transform: translateX(330px);
+  }
+}
+
+@keyframes retract {
+  0% {
+    
+  }
+  100% {
+    -webkit-transform: initial;
+  }
 }
