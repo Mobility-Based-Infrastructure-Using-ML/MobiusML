@@ -24,7 +24,11 @@
 }
 
 html, body {
+<<<<<<< HEAD
   background: #fff;
+=======
+  background-image: url('background.png');
+>>>>>>> 9e115d8cc36857bf6a7696500ad7aa4862b5b573
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
@@ -50,7 +54,7 @@ button:focus {
 
 /* Rules for the pacman game. */
 #pacman-container {
-  background: black;
+  background: lightblue;
   padding: 25px 0 40px;
 }
 #logo {
@@ -191,7 +195,7 @@ button:focus {
   margin-top: 35px;
 }
 .webcam-box-outer {
-  background: black;
+  background: lightblue;
   border: 1px solid #585858;
   border-radius: 4px;
   box-sizing: border-box;
@@ -295,7 +299,7 @@ button:focus {
   margin-top: 18px;
 }
 .thumb-box-outer {
-  background: black;
+  background: lightblue;
   border: 1px solid #585858;
   border-radius: 4px;
   box-sizing: border-box;
@@ -308,7 +312,7 @@ button:focus {
 [data-active="down"] .panel-row-bottom .thumb-box-outer,
 [data-active="left"] .panel-cell-left .thumb-box-outer,
 [data-active="right"] .panel-cell-right .thumb-box-outer {
-  box-shadow: 0 0 4px 4px #ffaa00;
+  box-shadow: 0 0 4px 4px lime;
 }
 .thumb-box-inner {
   border: 1px solid #585858;

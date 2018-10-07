@@ -47,6 +47,8 @@ export function startPacman() {
 export function predictClass(classId) {
   // google.pacman.keyPressed(CONTROL_CODES[classId]);
   document.body.setAttribute('data-active', CONTROLS[classId]);
+  const classToDirection = {0: "UP", 3: "RIGHT", 2: "LEFT", 1: "DOWN"}
+  document.getElementById('currentDirection').innerText = classToDirection[classId]
 }
 
 export function isPredicting() {
@@ -100,6 +102,7 @@ rightButton.addEventListener('mousedown', () => handler(3));
 rightButton.addEventListener('mouseup', () => mouseDown = false);
 
 // let's make these thumbnails bigger so it's easier to see
+// ON CLICK OF SAMPLE
 export function drawThumb(img, label) {
   if (thumbDisplayed[label] == null) {
     const thumbCanvas = document.getElementById(CONTROLS[label] + '-thumb');

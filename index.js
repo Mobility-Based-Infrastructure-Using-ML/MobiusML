@@ -45,6 +45,7 @@ async function loadMobilenet() {
   return tf.model({inputs: mobilenet.inputs, outputs: layer.output});
 }
 
+
 // When the UI buttons are pressed, read a frame from the webcam and associate
 // it with the class label given by the button. up, down, left, right are
 // labels 0, 1, 2, 3 respectively.
@@ -166,6 +167,9 @@ document.getElementById('predict').addEventListener('click', () => {
   isPredicting = true;
   predict();
 });
+document.getElementById('saveModel').addEventListener('click', () => {
+  saveModel();
+})
 
 async function init() {
   try {
@@ -181,6 +185,19 @@ async function init() {
   tf.tidy(() => mobilenet.predict(webcam.capture()));
 
   ui.init();
+
+  // console.log(tf.Model)
+  
+
+}
+
+
+// Function for saving model to a file
+// https://js.tensorflow.org/tutorials/model-save-load.html 
+// Prompts to download 2 files
+async function saveModel() {
+  console.log('SAVING MODEL')
+  const saveResult = await model.save('downloads://' + __dirname + '/my-model-1');
 }
 
 // Initialize the application.

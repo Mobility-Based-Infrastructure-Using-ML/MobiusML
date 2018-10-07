@@ -36524,6 +36524,8 @@ function startPacman() {
 function predictClass(classId) {
   // google.pacman.keyPressed(CONTROL_CODES[classId]);
   document.body.setAttribute('data-active', CONTROLS[classId]);
+  var classToDirection = { 0: "UP", 3: "RIGHT", 2: "LEFT", 1: "DOWN" };
+  document.getElementById('currentDirection').innerText = classToDirection[classId];
 }
 
 function isPredicting() {
@@ -36579,6 +36581,7 @@ rightButton.addEventListener('mouseup', function () {
 });
 
 // let's make these thumbnails bigger so it's easier to see
+// ON CLICK OF SAMPLE
 function drawThumb(img, label) {
   if (thumbDisplayed[label] == null) {
     var thumbCanvas = document.getElementById(CONTROLS[label] + '-thumb');
@@ -36785,6 +36788,7 @@ var Webcam = exports.Webcam = function () {
       * =============================================================================
       */
 },{"babel-runtime/regenerator":31,"babel-runtime/core-js/promise":25,"babel-runtime/helpers/asyncToGenerator":19,"babel-runtime/helpers/classCallCheck":27,"babel-runtime/helpers/createClass":26,"@tensorflow/tfjs":18}],3:[function(require,module,exports) {
+var __dirname = "C:\\Users\\Gaetan\\Documents\\GitHub\\CongressionApp2018";
 'use strict';
 
 var _regenerator = require('babel-runtime/regenerator');
@@ -37048,6 +37052,9 @@ var init = function () {
 
             ui.init();
 
+            // console.log(tf.Model)
+
+
           case 13:
           case 'end':
             return _context6.stop();
@@ -37058,6 +37065,38 @@ var init = function () {
 
   return function init() {
     return _ref6.apply(this, arguments);
+  };
+}();
+
+// Function for saving model to a file
+// https://js.tensorflow.org/tutorials/model-save-load.html 
+// Prompts to download 2 files
+
+
+var saveModel = function () {
+  var _ref7 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee7() {
+    var saveResult;
+    return _regenerator2.default.wrap(function _callee7$(_context7) {
+      while (1) {
+        switch (_context7.prev = _context7.next) {
+          case 0:
+            console.log('SAVING MODEL');
+            _context7.next = 3;
+            return model.save('downloads://' + __dirname + '/my-model-1');
+
+          case 3:
+            saveResult = _context7.sent;
+
+          case 4:
+          case 'end':
+            return _context7.stop();
+        }
+      }
+    }, _callee7, this);
+  }));
+
+  return function saveModel() {
+    return _ref7.apply(this, arguments);
   };
 }();
 
@@ -37146,6 +37185,9 @@ document.getElementById('predict').addEventListener('click', function () {
   ui.startPacman();
   isPredicting = true;
   predict();
+});
+document.getElementById('saveModel').addEventListener('click', function () {
+  saveModel();
 });
 
 init();
