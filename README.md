@@ -6,7 +6,7 @@ It uses a 3 layer feedforward neural network built off a pretrained mobilenet.
 The user registers different reactions for each direction and the network is trained on the data.
 The training process can be done in less than 10 seconds.
 
-We then connect the neural net to a flashed raspberry pi nd connect it to different parts of the wheelchair allowing it to mave in the right direction. 
+We then connect the neural net to a flashed raspberry pi running the raspbian distro and connect it to different parts of the wheelchair allowing it to mave in the right direction. 
 
 ## Running the project
 Inside the project's directory, run
