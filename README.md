@@ -1,10 +1,18 @@
-# TensorFlow.js Example: Transfer Learning to play Pacman via the Webcam
+# MobiusML
 
-This example shows you how to predict poses from a webcam using transfer
-learning.
+MobiusML is a program built using machine learning to help people with paralisis move around more easily.
+It uses a 3 layer feedforward neural network built off a pretrained mobilenet.
 
-In this example, we'll use a pretrained [MobileNet](https://github.com/tensorflow/tfjs-examples/tree/master/mobilenet) model and train another model
-using an internal mobilenet activation to predict 4 different classes from the
-webcam defined by the user.
+The user registers different reactions for each direction and the network is trained on the data.
+The training process can be done in less than 10 seconds.
 
-[See this example live!](https://storage.googleapis.com/tfjs-examples/webcam-transfer-learning/dist/index.html)
+We then connect the neural net to a flashed raspberry pi running the raspbian distro and connect it to different parts of the wheelchair allowing it to mave in the right direction. 
+
+## Running the project
+Inside the project's directory, run
+```
+yarn
+```
+```
+yarn watch
+```
