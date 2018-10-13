@@ -1,216 +1,87 @@
-<!--
-Copyright 2018 Google LLC. All Rights Reserved.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-==============================================================================
--->
-<html >
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <title>Webcam Pacman</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-teal.min.css" />
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-  <link rel="stylesheet" href="./styles.css">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+    <link rel="stylesheet" href="./styles.css">
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="animations.js"></script>
+
 </head>
-<body background='background.png'>
-  
-
-  <div id="no-webcam">
-      No webcam found. <br/>
-      To use this demo, use a device with a webcam.
-    </div>
-  <!-- Top -->
-
-  <div id="status">Loading mobilenet...</div>
-
-  <div class="controller-panels" id="controller" style="display:none">
-
-    <div class="panel training-panel">
-
-      <h1 id="currentDirection">Hi</h1>
-
-      <!-- Big buttons. -->
-      <div class="panel-row big-buttons">
-        <button id="train" class="button">TRAIN</button>
-        <button id="predict" class="button">RUN</button>
-        <button id="saveModel" class="button">SAVE</button>
-      </div><!-- /.panel-row -->
-
-      <div class="panel-row params-webcam-row">
-
-        <!-- Hyper params. -->
-        <div class="hyper-params">
-
-          <!-- Learning rate -->
-          <div class="dropdown">
-            <label>Learning rate</label>
-            <div class="select">
-              <select id="learningRate">
-                <option value="0.00001">0.00001</option>
-                <option selected value="0.0001">0.0001</option>
-                <option value="0.01">0.001</option>
-                <option value="0.03">0.003</option>
-              </select>
+<body style="width: 100%; height: 100%;">
+    <h1>Facial Recognition using Neural Networks</h1>
+    <div class="content">
+        <div class="settings">
+            <div class="buttons">
+                <button id="train" class="button">Train</button>
+                <button id="predict" class="button">Run</button>
             </div>
-          </div>
+            <div class="hyper-params">
 
-          <!-- Batch size -->
-          <div class="dropdown">
-            <label>Batch size</label>
-            <div class="select">
-              <select id="batchSizeFraction">
-                <option value="0.05">0.05</option>
-                <option value="0.1">0.1</option>
-                <option selected value="0.4">0.4</option>
-                <option value="1">1</option>
-              </select>
+                <!-- Learning rate -->
+                <div class="dropdown">
+                    <label>Learning rate</label>
+                    <select id="learningRate" class="select">
+                        <option value="0.00001">0.00001</option>
+                        <option selected="" value="0.0001">0.0001</option>
+                        <option value="0.01">0.001</option>
+                        <option value="0.03">0.003</option>
+                    </select>
+                </div>
+        
+                <!-- Batch size -->
+                <div class="dropdown">
+                    <label>Batch size</label>
+                    <select id="batchSizeFraction" class="select">
+                        <option value="0.05">0.05</option>
+                        <option value="0.1">0.1</option>
+                        <option selected="" value="0.4">0.4</option>
+                        <option value="1">1</option>
+                    </select>
+                </div>
+        
+                <!-- Epochs -->
+                <div class="dropdown">
+                    <label>Epochs</label>
+                    <select id="epochs" class="select">
+                        <option value="10">10</option>
+                        <option selected="" value="20">20</option>
+                        <option value="40">40</option>
+                    </select>
+                </div>
+        
+                <!-- Hidden units -->
+                <div class="dropdown">
+                    <label>Hidden units</label>
+                    <select id="dense-units" class="select">
+                        <option value="10">10</option>
+                        <option selected="" value="100">100</option>
+                        <option value="200">200</option>
+                    </select>
+                </div>
+            
             </div>
-          </div>
-
-          <!-- Epochs -->
-          <div class="dropdown">
-            <label>Epochs</label>
-            <div class="select">
-              <select id="epochs">
-                <option value="10">10</option>
-                <option selected value="20">20</option>
-                <option value="40">40</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Hidden units -->
-          <div class="dropdown">
-            <label>Hidden units</label>
-            <div class="select">
-              <select id="dense-units">
-                <option value="10">10</option>
-                <option selected value="100">100</option>
-                <option value="200">200</option>
-              </select>
-            </div>
-          </div>
-
-        </div><!-- /.hyper-params -->
-
-        <div class="webcam-box-outer">
-          <div class="webcam-box-inner">
-            <video autoplay playsinline muted id="webcam" width="224" height="224"></video>
-          </div>
         </div>
-
-      </div><!-- /.panel-row -->
-
-    </div><!-- /.panel -->
-
-    <div class="panel joystick-panel">
-
-      <div class="panel-row panel-row-top">
-
-        <div class="panel-cell panel-cell-left panel-cell-fill">
-          <p class="help-text">
-          Click to add the <br/>
-          current camera <br/>
-          view as an example <br/>
-          for that control
-          </p>
-        </div><!-- ./panel-cell -->
-
-        <div class="panel-cell panel-cell-center">
-          <div class="thumb-box">
-            <div class="thumb-box-outer">
-              <div class="thumb-box-inner">
-                <canvas class="thumb" width=224 height=224 id="up-thumb"></canvas>
-              </div>
-              <button class="record-button" id="up"/><span>Add Sample</span></button>
+        <div class="circles">
+            <div class="cam-circle" id="top-camera">
+                <div class="thumb-box">
+                    <div class="thumb-box-inner">
+                    <canvas class="thumb" width=224 height=224 id="up-thumb"></canvas>
+                    </div>
+                    <button class="record-button" id="up"/><span>Add Sample</span></button>
+                </div>
             </div>
-            <p>
-              <span id="up-total">0</span> examples
-            </p>
-          </div>
-        </div><!-- ./panel-cell -->
+            <div class="cam-circle" id="right-camera"></div>
+            <div class="cam-circle" id="bottom-camera"></div>
+            <div class="cam-circle" id="left-camera"></div>
+            <div class="cam-circle main selected" id="camera"></div>
+        </div>
+    </div>
 
-        <div class="panel-cell panel-cell-right panel-cell-fill">
-        </div><!-- ./panel-cell -->
-
-      </div><!-- /.panel-row -->
-      <div class="panel-row panel-row-middle">
-        <div class="panel-cell panel-cell-left">
-          <div class="thumb-box">
-            <div class="thumb-box-outer">
-              <div class="thumb-box-inner">
-                <canvas class="thumb" width=224 height=224 id="left-thumb"></canvas>
-              </div>
-              <button class="record-button" id="left"/><span>Add Sample</span></button>
-            </div>
-            <p>
-              <span id="left-total">0</span> examples
-            </p>
-          </div>
-        </div><!-- ./panel-cell -->
-
-        <div class="panel-cell panel-cell-center panel-cell-fill">
-          <img height="108" width="129" src="./images/joystick.png" />
-        </div><!-- ./panel-cell -->
-
-        <div class="panel-cell panel-cell-right">
-          <div class="thumb-box">
-            <div class="thumb-box-outer">
-              <div class="thumb-box-inner">
-                <canvas class="thumb" width=224 height=224 id="right-thumb"></canvas>
-              </div>
-              <button class="record-button" id="right"/><span>Add Sample</span></button>
-            </div>
-            <p>
-              <span id="right-total">0</span> examples
-            </p>
-          </div>
-        </div><!-- ./panel-cell -->
-
-      </div><!-- /.panel-row -->
-
-      <div class="panel-row panel-row-bottom">
-
-        <div class="panel-cell panel-cell-left panel-cell-fill">
-        </div><!-- ./panel-cell -->
-
-        <div class="panel-cell panel-cell-center">
-          <div class="thumb-box">
-            <div class="thumb-box-outer">
-              <div class="thumb-box-inner">
-                <canvas class="thumb" width=224 height=224 id="down-thumb"></canvas>
-              </div>
-              <button class="record-button" id="down"/><span>Add Sample</span></button>
-            </div>
-            <p>
-              <span id="down-total">0</span> examples
-            </p>
-          </div>
-        </div><!-- ./panel-cell -->
-
-        <div class="panel-cell panel-cell-right panel-cell-fill">
-        </div><!-- ./panel-cell -->
-
-      </div><!-- /.panel-row -->
-
-
-    </div><!-- /.panel -->
-
-  </div><!-- /#controller -->
-
-  <script src="https://storage.googleapis.com/tfjs-examples/assets/webcam-transfer-learning/pacman-google.js"></script>
-  <script src="index.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>

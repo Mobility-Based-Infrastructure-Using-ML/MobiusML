@@ -24,11 +24,7 @@
 }
 
 html, body {
-<<<<<<< HEAD
   background: #fff;
-=======
-  background-image: url('background.png');
->>>>>>> 9e115d8cc36857bf6a7696500ad7aa4862b5b573
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
@@ -417,8 +413,8 @@ h1 {
 }
 
 .cam-circle.main {
-  width: 400px;
-  height: 400px;
+  width: 300px;
+  height: 300px;
 }
 
 .select {
@@ -444,16 +440,16 @@ h1 {
     -webkit-transform: translateY(0);
   }
   25% {
-    -webkit-transform: translateY(-330px);
+    -webkit-transform: translateY(-230px);
   }
   50% {
-    -webkit-transform: translateY(-310px);
+    -webkit-transform: translateY(-210px);
   }
   75% {
-    -webkit-transform: translateY(-340px);
+    -webkit-transform: translateY(-240px);
   }
   100% {
-    -webkit-transform: translateY(-330px);
+    -webkit-transform: translateY(-230px);
   }
 }
 
@@ -462,16 +458,16 @@ h1 {
     -webkit-transform: translateY(0);
   }
   25% {
-    -webkit-transform: translateY(330px);
+    -webkit-transform: translateY(230px);
   }
   50% {
-    -webkit-transform: translateY(310px);
+    -webkit-transform: translateY(210px);
   }
   75% {
-    -webkit-transform: translateY(340px);
+    -webkit-transform: translateY(240px);
   }
   100% {
-    -webkit-transform: translateY(330px);
+    -webkit-transform: translateY(230px);
   }
 }
 
@@ -480,16 +476,16 @@ h1 {
     -webkit-transform: translateX(0);
   }
   25% {
-    -webkit-transform: translateX(-330px);
+    -webkit-transform: translateX(-230px);
   }
   50% {
-    -webkit-transform: translateX(-310px);
+    -webkit-transform: translateX(-210px);
   }
   75% {
-    -webkit-transform: translateX(-340px);
+    -webkit-transform: translateX(-240px);
   }
   100% {
-    -webkit-transform: translateX(-330px);
+    -webkit-transform: translateX(-230px);
   }
 }
 
@@ -498,16 +494,16 @@ h1 {
     -webkit-transform: translateX(0);
   }
   25% {
-    -webkit-transform: translateX(330px);
+    -webkit-transform: translateX(230px);
   }
   50% {
-    -webkit-transform: translateX(310px);
+    -webkit-transform: translateX(210px);
   }
   75% {
-    -webkit-transform: translateX(340px);
+    -webkit-transform: translateX(240px);
   }
   100% {
-    -webkit-transform: translateX(330px);
+    -webkit-transform: translateX(230px);
   }
 }
 
