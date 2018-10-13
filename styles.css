@@ -38,6 +38,21 @@ body {
 button:focus {
   outline: 0;
 }
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+h1 {
+  font-family: 'product_sansregular';
+  color: #adb8c5;
+  margin-left: 30px;
+}
+h2 {
+  font-family: 'product_sansregular';
+  color: #adb8c5;
+  margin-left: 24px;
+}
 
 
 /** Loading message. */
@@ -84,6 +99,16 @@ button:focus {
   left: 0;
   position: absolute;
   width: 0;
+}
+
+.webcam-wrapper {
+  width: 224px;
+  height: 224px;
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  border-radius: 50%;
+  transform: scale(1.12);
 }
 
 /** Controls. **/
@@ -208,7 +233,10 @@ button:focus {
   width: 160px;
 }
 #webcam {
-  height: 160px;
+  /* border-radius: 50%;
+  border: 1px solid #222;
+  width: 224px !important;
+  height: 224px !important; */
   transform: scaleX(-1);
 }
 .hyper-params {
@@ -320,7 +348,8 @@ button:focus {
   width: 66px;
 }
 .thumb {
-  height: 66px;
+  height: 180px;
+  border-radius: 50%;
   transform: scaleX(-1);
 }
 .thumb-box-outer .record-button {
@@ -364,12 +393,6 @@ button:focus {
 
 /* NEW UI */
 
-h1 {
-  font-family: 'product_sansregular';
-  color: #adb8c5;
-  margin-left: 30px;
-}
-
 .content {
   background-color: #f3f5f8;
   display: flex;
@@ -405,6 +428,10 @@ h1 {
   background-color: #fff;
   box-shadow: 0 0px 0px rgba(0,0,0,0.1), 0 0px 33px rgba(0,0,0,0.1);
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition-duration: 0.2s;
 }
 
 .cam-circle.selected {

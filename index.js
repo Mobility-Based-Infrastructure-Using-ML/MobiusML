@@ -21,6 +21,8 @@ import {ControllerDataset} from './controller_dataset';
 import * as ui from './ui';
 import {Webcam} from './webcam';
 
+// console.log('index loaded');
+
 // The number of classes we want to predict. In this example, we will be
 // predicting 4 classes for up, down, left, and right.
 const NUM_CLASSES = 4;
@@ -129,7 +131,7 @@ async function predict() {
   ui.isPredicting();
   while (isPredicting) {
     const predictedClass = tf.tidy(() => {
-      // Capture the frame from the webcam.
+      // viure the frame from the webcam.
       const img = webcam.capture();
 
       // Make a prediction through mobilenet, getting the internal activation of
@@ -198,6 +200,8 @@ async function saveModel() {
   console.log('SAVING MODEL')
   const saveResult = await model.save('downloads://' + __dirname + '/my-model-1');
 }
+
+
 
 // Initialize the application.
 init();

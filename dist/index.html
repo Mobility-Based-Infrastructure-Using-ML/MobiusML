@@ -8,9 +8,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" type="text/css" media="screen" href="/styles.67fbc3de.css">
     <link rel="stylesheet" href="/styles.67fbc3de.css">
-    <script src="/jquery-3.3.1.min.57206d60.js"></script>
-    <script src="/animations.16340ec8.js"></script>
-
 </head>
 <body style="width: 100%; height: 100%;">
     <h1>Facial Recognition using Neural Networks</h1>
@@ -19,7 +16,10 @@
             <div class="buttons">
                 <button id="train" class="button">Train</button>
                 <button id="predict" class="button">Run</button>
+                <button id="saveModel" class="button">Save</button>
             </div>
+            <div id="status">Loading mobilenet...</div>
+            <h2>Loss<span id="train-status"></span></h2>
             <div class="hyper-params">
 
                 <!-- Learning rate -->
@@ -66,22 +66,37 @@
             
             </div>
         </div>
+        
         <div class="circles">
             <div class="cam-circle" id="top-camera">
-                <div class="thumb-box">
-                    <div class="thumb-box-inner">
-                    <canvas class="thumb" width="224" height="224" id="up-thumb"></canvas>
-                    </div>
-                    <button class="record-button" id="up"><span>Add Sample</span></button>
+                <button id="up">
+                    <canvas class="thumb" width="224" height="224" id="up-thumb"></canvas>  
+                </button>
+            </div>
+            <div class="cam-circle" id="right-camera">
+                <button id="right">
+                    <canvas class="thumb" width="224" height="224" id="right-thumb"></canvas>
+                </button>
+            </div>
+            <div class="cam-circle" id="bottom-camera">
+                <button id="down" on="">
+                    <canvas class="thumb" width="224" height="224" id="down-thumb"></canvas>
+                </button>
+            </div>
+            <div class="cam-circle" id="left-camera">
+                <button id="left">
+                    <canvas class="thumb" width="224" height="224" id="left-thumb"></canvas>
+                </button>
+            </div>
+            <div class="cam-circle main selected" id="camera">
+                <div class="webcam-wrapper">
+                    <video autoplay="" playsinline="" muted="" id="webcam" height="224"></video>
                 </div>
             </div>
-            <div class="cam-circle" id="right-camera"></div>
-            <div class="cam-circle" id="bottom-camera"></div>
-            <div class="cam-circle" id="left-camera"></div>
-            <div class="cam-circle main selected" id="camera"></div>
         </div>
     </div>
 
+    <script src="/animations.16340ec8.js"></script>
     <script src="/CongressionApp2018.c54a453b.js"></script>
 </body>
 </html>

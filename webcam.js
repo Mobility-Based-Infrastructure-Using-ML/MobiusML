@@ -25,6 +25,8 @@ export class Webcam {
    */
   constructor(webcamElement) {
     this.webcamElement = webcamElement;
+   
+
   }
 
   /**

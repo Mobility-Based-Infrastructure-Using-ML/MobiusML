@@ -20,7 +20,7 @@ const CONTROLS = ['up', 'down', 'left', 'right'];
 const CONTROL_CODES = [38, 40, 37, 39];
 
 export function init() {
-  document.getElementById('controller').style.display = '';
+  // document.getElementById('controller').style.display = '';
   statusElement.style.display = 'none';
 }
 
@@ -48,7 +48,7 @@ export function predictClass(classId) {
   // google.pacman.keyPressed(CONTROL_CODES[classId]);
   document.body.setAttribute('data-active', CONTROLS[classId]);
   const classToDirection = {0: "UP", 3: "RIGHT", 2: "LEFT", 1: "DOWN"}
-  document.getElementById('currentDirection').innerText = classToDirection[classId]
+  // document.getElementById('currentDirection').innerText = classToDirection[classId]
 }
 
 export function isPredicting() {
@@ -58,7 +58,8 @@ export function donePredicting() {
   statusElement.style.visibility = 'hidden';
 }
 export function trainStatus(status) {
-  // trainStatusElement.innerText = status;
+  trainStatusElement.innerText = status;
+  // UPDATES LOSS
 }
 
 export let addExampleHandler;
@@ -83,7 +84,7 @@ async function handler(label) {
   while (mouseDown) {
     addExampleHandler(label);
     document.body.setAttribute('data-active', CONTROLS[label]);
-    total.innerText = totals[label]++;
+    // total.innerText = totals[label]++;
     await tf.nextFrame();
   }
   document.body.removeAttribute('data-active');
@@ -107,7 +108,6 @@ export function drawThumb(img, label) {
   if (thumbDisplayed[label] == null) {
     const thumbCanvas = document.getElementById(CONTROLS[label] + '-thumb');
     draw(img, thumbCanvas);
-    console.log(label, ' getting detected!');
   }
 }
 
