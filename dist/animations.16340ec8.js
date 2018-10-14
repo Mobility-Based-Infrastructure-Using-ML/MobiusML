@@ -98,7 +98,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({3:[function(require,module,exports) {
+})({265:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -110,8 +110,6 @@ exports.expand = expand;
 exports.init = init;
 exports.setCameraSelected = setCameraSelected;
 exports.unSelectCamera = unSelectCamera;
-console.log('animations running');
-
 var camcircle = document.getElementsByClassName('cam-circle');
 
 var topcamera = document.getElementById('top-camera');
@@ -122,6 +120,9 @@ var leftcamera = document.getElementById('left-camera');
 function move(element) {
 
     switch (element) {
+        case 'IDLE':
+            retract();
+            break;
         case 'FRONT':
             retract();
             topcamera.style.animation = 'slide-top 0.3s ease-in-out both';
@@ -156,21 +157,29 @@ function expand() {
     leftcamera.style.animation = 'slide-left 0.3s ease-in-out both';
 }
 
+var top = document.getElementById('top-camera');
+var right = document.getElementById('right-camera');
+var left = document.getElementById('left-camera');
+var bottom = document.getElementById('bottom-camera');
+var idle = document.getElementById('camera');
+
 function init() {
-    document.getElementById('top-camera').onmousedown = function () {
-        setCameraSelected('up');
+    top.onmousedown = function () {
+        return setCameraSelected('up');
     };
-    document.getElementById('right-camera').onmousedown = function () {
-        setCameraSelected('right');
+    right.onmousedown = function () {
+        return setCameraSelected('right');
     };
-    document.getElementById('left-camera').onmousedown = function () {
-        setCameraSelected('left');
+    left.onmousedown = function () {
+        return setCameraSelected('left');
     };
-    document.getElementById('bottom-camera').onmousedown = function () {
-        setCameraSelected('down');
+    bottom.onmousedown = function () {
+        return setCameraSelected('down');
+    };
+    idle.onmousedown = function () {
+        return setCameraSelected('idle');
     };
 
-    // const camCircles = document.getElementsByClassName('cam-circle');
     for (var i = 0; i < camcircle.length; i++) {
         camcircle[i].onmouseup = function () {
             unSelectCamera();
@@ -182,18 +191,20 @@ function setCameraSelected(direction) {
     // allows to select a camera to have a glowing halo around it
     switch (direction) {
         case 'up':
-            document.getElementById('top-camera').classList.add('selected');
+            top.classList.add('selected');
             break;
         case 'down':
-            document.getElementById('bottom-camera').classList.add('selected');
+            bottom.classList.add('selected');
             break;
         case 'left':
-            document.getElementById('left-camera').classList.add('selected');
+            left.classList.add('selected');
             break;
         case 'right':
-            document.getElementById('right-camera').classList.add('selected');
+            right.classList.add('selected');
             break;
-
+        case 'idle':
+            idle.classList.add('selected');
+            break;
     }
 }
 
@@ -203,9 +214,10 @@ function unSelectCamera() {
     document.getElementById('bottom-camera').classList.remove('selected');
     document.getElementById('left-camera').classList.remove('selected');
     document.getElementById('right-camera').classList.remove('selected');
+    document.getElementById('idle').classList.remove('selected');
 }
 
 init();
 expand();
-},{}]},{},[3], null)
+},{}]},{},[265], null)
 //# sourceMappingURL=/animations.16340ec8.map

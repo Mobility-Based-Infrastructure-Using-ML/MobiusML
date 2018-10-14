@@ -17,8 +17,7 @@
 import * as tf from '@tensorflow/tfjs';
 import * as anim from './animations';
 
-const CONTROLS = ['up', 'down', 'left', 'right'];
-const CONTROL_CODES = [38, 40, 37, 39];
+const CONTROLS = ['front', 'back', 'left', 'right', 'idle'];
 
 export function init() {
   // document.getElementById('controller').style.display = '';
@@ -46,12 +45,9 @@ export function startPacman() {
 }
 
 export function predictClass(classId) {
-  // google.pacman.keyPressed(CONTROL_CODES[classId]);
   document.body.setAttribute('data-active', CONTROLS[classId]);
-  const classToDirection = {0: "FRONT", 3: "RIGHT", 2: "LEFT", 1: "BOTTOM"}
+  const classToDirection = {4: "IDLE", 3: "RIGHT", 2: "LEFT", 1: "BOTTOM", 0: "FRONT"}
   return classToDirection[classId];
-  
-  // document.getElementById('currentDirection').innerText = classToDirection[classId]
 }
 
 export function isPredicting() {
@@ -70,47 +66,88 @@ export function setExampleHandler(handler) {
   addExampleHandler = handler;
 }
 let mouseDown = false;
-const totals = [0, 0, 0, 0];
 
+const idle = document.getElementById('idle');
 const upButton = document.getElementById('up');
 const downButton = document.getElementById('down');
 const leftButton = document.getElementById('left');
 const rightButton = document.getElementById('right');
 
+const camcircle = document.getElementsByClassName('cam-circle');
+
 const thumbDisplayed = {};
 
 async function handler(label) {
   mouseDown = true;
-  const className = CONTROLS[label];
-  const button = document.getElementById(className);
-  const total = document.getElementById(className + '-total');
+  const className = CONTROLS[label]; // array that turns a number into front left right back or idle
   while (mouseDown) {
+    // console.log('adding examples for', className);
     addExampleHandler(label);
-    document.body.setAttribute('data-active', CONTROLS[label]);
-    // total.innerText = totals[label]++;
     await tf.nextFrame();
   }
-  document.body.removeAttribute('data-active');
 }
 
-upButton.addEventListener('mousedown', () => handler(0));
+
+upButton.addEventListener('mousedown', () => handler(0)); // front 0
 upButton.addEventListener('mouseup', () => mouseDown = false);
 
-downButton.addEventListener('mousedown', () => handler(1));
+downButton.addEventListener('mousedown', () => handler(1)); // back 1
 downButton.addEventListener('mouseup', () => mouseDown = false);
 
-leftButton.addEventListener('mousedown', () => handler(2));
+leftButton.addEventListener('mousedown', () => handler(2)); // left 2
 leftButton.addEventListener('mouseup', () => mouseDown = false);
 
-rightButton.addEventListener('mousedown', () => handler(3));
+rightButton.addEventListener('mousedown', () => handler(3)); // right 3
 rightButton.addEventListener('mouseup', () => mouseDown = false);
+
+idle.addEventListener('mousedown', () => handler(4)); // idle 4
+idle.addEventListener('mouseup', () => mouseDown = false);
+
+let frontEx = 0;
+let backEx = 0;
+let leftEx = 0;
+let rightEx = 0;
+let idleEx = 0;
+
+const MIN_EXAMPLES = 30;
+
 
 // let's make these thumbnails bigger so it's easier to see
 // ON CLICK OF SAMPLE
 export function drawThumb(img, label) {
   if (thumbDisplayed[label] == null) {
     const thumbCanvas = document.getElementById(CONTROLS[label] + '-thumb');
-    draw(img, thumbCanvas);
+    switch (label){
+      case 0:
+        // front
+        draw(img, thumbCanvas);
+        frontEx++;
+        (frontEx > MIN_EXAMPLES) ? camcircle[label].style.background = '#7ba3d2' : null;
+        break;
+      case 1:
+        // back
+        draw(img, thumbCanvas);
+        backEx++;
+        (backEx > MIN_EXAMPLES) ? camcircle[label].style.background = '#7ba3d2' : null;
+        break;
+      case 2:
+        // left
+        draw(img, thumbCanvas);
+        leftEx++;
+        (leftEx > MIN_EXAMPLES) ? camcircle[label].style.background = '#7ba3d2' : null;
+        break;
+      case 3:
+        // right
+        draw(img, thumbCanvas);
+        rightEx++;
+        (rightEx > MIN_EXAMPLES) ? camcircle[label].style.background = '#7ba3d2' : null;
+        break;
+      case 4:
+        // idle
+        idleEx++;
+        (idleEx > MIN_EXAMPLES) ? camcircle[label].style.background = '#7ba3d2' : null;
+        break;
+    }
   }
 }
 

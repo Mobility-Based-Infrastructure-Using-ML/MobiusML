@@ -24,7 +24,7 @@ import {Webcam} from './webcam';
 
 // The number of classes we want to predict. In this example, we will be
 // predicting 4 classes for up, down, left, and right.
-const NUM_CLASSES = 4;
+const NUM_CLASSES = 5;
 
 // A webcam class that generates Tensors from the images from the webcam.
 const webcam = new Webcam(document.getElementById('webcam'));
@@ -47,8 +47,8 @@ async function loadMobilenet() {
 }
 
 // When the UI buttons are pressed, read a frame from the webcam and associate
-// it with the class label given by the button. up, down, left, right are
-// labels 0, 1, 2, 3 respectively.
+// it with the class label given by the button. front, back, left, right, idle are
+// labels 0, 1, 2, 3, 4 respectively.
 ui.setExampleHandler(label => {
   tf.tidy(() => {
     const img = webcam.capture();
