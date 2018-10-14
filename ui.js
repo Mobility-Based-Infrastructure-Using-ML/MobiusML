@@ -15,6 +15,7 @@
  * =============================================================================
  */
 import * as tf from '@tensorflow/tfjs';
+import * as anim from './animations';
 
 const CONTROLS = ['up', 'down', 'left', 'right'];
 const CONTROL_CODES = [38, 40, 37, 39];
@@ -47,7 +48,9 @@ export function startPacman() {
 export function predictClass(classId) {
   // google.pacman.keyPressed(CONTROL_CODES[classId]);
   document.body.setAttribute('data-active', CONTROLS[classId]);
-  const classToDirection = {0: "UP", 3: "RIGHT", 2: "LEFT", 1: "DOWN"}
+  const classToDirection = {0: "FRONT", 3: "RIGHT", 2: "LEFT", 1: "BOTTOM"}
+  return classToDirection[classId];
+  
   // document.getElementById('currentDirection').innerText = classToDirection[classId]
 }
 

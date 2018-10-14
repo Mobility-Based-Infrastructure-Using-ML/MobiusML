@@ -19,9 +19,8 @@ import * as tf from '@tensorflow/tfjs';
 
 import {ControllerDataset} from './controller_dataset';
 import * as ui from './ui';
+import * as anim from './animations';
 import {Webcam} from './webcam';
-
-// console.log('index loaded');
 
 // The number of classes we want to predict. In this example, we will be
 // predicting 4 classes for up, down, left, and right.
@@ -130,7 +129,7 @@ let isPredicting = false;
 async function predict() {
   ui.isPredicting();
   while (isPredicting) {
-    const predictedClass = tf.tidy(() => {
+    const predictedClass = tf.tidy(() => { // memory management
       // viure the frame from the webcam.
       const img = webcam.capture();
 
@@ -141,7 +140,6 @@ async function predict() {
       // Make a prediction through our newly-trained model using the activation
       // from mobilenet as input.
       const predictions = model.predict(activation);
-
       // Returns the index with the maximum probability. This number corresponds
       // to the class the model thinks is the most probable given the input.
       return predictions.as1D().argMax();
@@ -150,7 +148,7 @@ async function predict() {
     const classId = (await predictedClass.data())[0];
     predictedClass.dispose();
 
-    ui.predictClass(classId);
+    anim.move(ui.predictClass(classId));
     await tf.nextFrame();
   }
   ui.donePredicting();
@@ -164,6 +162,7 @@ document.getElementById('train').addEventListener('click', async () => {
   train();
 });
 document.getElementById('predict').addEventListener('click', () => {
+  anim.retract();
   ui.startPacman();
   isPredicting = true;
   predict();

@@ -99,6 +99,17 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   // Override the current require with this new one
   return newRequire;
 })({3:[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.move = move;
+exports.retract = retract;
+exports.expand = expand;
+exports.init = init;
+exports.setCameraSelected = setCameraSelected;
+exports.unSelectCamera = unSelectCamera;
 console.log('animations running');
 
 var camcircle = document.getElementsByClassName('cam-circle');
@@ -111,57 +122,33 @@ var leftcamera = document.getElementById('left-camera');
 function move(element) {
 
     switch (element) {
-        case 97:
+        case 'FRONT':
             retract();
             topcamera.style.animation = 'slide-top 0.3s ease-in-out both';
-            // $("#top-camera").css({
-            //     '-webkit-animation' : 'slide-top 0.3s ease-in-out both'
-            // });
             break;
-        case 115:
+        case 'RIGHT':
             retract();
             rightcamera.style.animation = 'slide-right 0.3s ease-in-out both';
-            $("#right-camera").css({
-                '-webkit-animation': 'slide-right 0.3s ease-in-out both'
-            });
             break;
-        case 100:
+        case 'BOTTOM':
             retract();
             bottomcamera.style.animation = 'slide-bottom 0.3s ease-in-out both';
-            // $("#bottom-camera").css({
-            //     '-webkit-animation' : 'slide-bottom 0.3s ease-in-out both'
-            // });
             break;
-        case 102:
+        case 'LEFT':
             retract();
             leftcamera.style.animation = 'slide-left 0.3s ease-in-out both';
-            // $("#left-camera").css({
-            //     '-webkit-animation' : 'slide-left 0.3s ease-in-out both'
-            // });
             break;
     }
 }
 
 function retract() {
-    camcircle.style.animation = 'retract 0.3s ease-in-out both';
-    // $(".cam-circle").css({
-    //     '-webkit-animation' : 'retract 0.3s ease-in-out both'
-    // });
+    for (var i = 0; i < camcircle.length - 1; i++) {
+        // -1 because the center circle is also a camera but we dont want that one to dissapear
+        camcircle[i].style.animation = 'retract 0.3s ease-in-out both';
+    }
 }
 
 function expand() {
-    // $("#top-camera").css({
-    //     '-webkit-animation' : 'slide-top 0.3s ease-in-out both'
-    // });
-    // $("#right-camera").css({
-    //     '-webkit-animation' : 'slide-right 0.3s ease-in-out both'
-    // });
-    // $("#bottom-camera").css({
-    //     '-webkit-animation' : 'slide-bottom 0.3s ease-in-out both'
-    // });
-    // $("#left-camera").css({
-    //     '-webkit-animation' : 'slide-left 0.3s ease-in-out both'
-    // });
 
     topcamera.style.animation = 'slide-top 0.3s ease-in-out both';
     rightcamera.style.animation = 'slide-right 0.3s ease-in-out both';
@@ -183,16 +170,16 @@ function init() {
         setCameraSelected('down');
     };
 
-    var camCircles = document.getElementsByClassName('cam-circle');
-    for (var i = 0; i < camCircles.length; i++) {
-        camCircles[i].onmouseup = function () {
+    // const camCircles = document.getElementsByClassName('cam-circle');
+    for (var i = 0; i < camcircle.length; i++) {
+        camcircle[i].onmouseup = function () {
             unSelectCamera();
         };
     }
 }
 
 function setCameraSelected(direction) {
-    // console.log('set selected is running');
+    // allows to select a camera to have a glowing halo around it
     switch (direction) {
         case 'up':
             document.getElementById('top-camera').classList.add('selected');
