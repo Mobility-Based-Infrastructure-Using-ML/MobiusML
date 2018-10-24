@@ -98,7 +98,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({265:[function(require,module,exports) {
+})({3:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -219,5 +219,5 @@ function unSelectCamera() {
 
 init();
 expand();
-},{}]},{},[265], null)
+},{}]},{},[3], null)
 //# sourceMappingURL=/animations.16340ec8.map

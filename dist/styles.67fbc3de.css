@@ -35,6 +35,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
 }
 button:focus {
   outline: 0;
