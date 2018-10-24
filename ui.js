@@ -39,14 +39,55 @@ export const getEpochs = () => +epochsElement.value;
 const denseUnitsElement = document.getElementById('dense-units');
 export const getDenseUnits = () => +denseUnitsElement.value;
 const statusElement = document.getElementById('status');
+var btSerial = new (require('bluetooth-serial-port')).BluetoothSerialPort();
+
 
 export function startPacman() {
   // google.pacman.startGameplay();
+  btSerial.on('found', function(address, name) {
+    btSerial.findSerialPortChannel(address, function(channel) {
+      btSerial.connect(address, channel, function() {
+        console.log('connected');
+  
+      }, function () {
+        console.log('cannot connect');
+      });
+  
+      // close the connection when you're ready
+      btSerial.close();
+    }, function() {
+      console.log('found nothing');
+    });
+  });
 }
 
 export function predictClass(classId) {
   document.body.setAttribute('data-active', CONTROLS[classId]);
   const classToDirection = {4: "IDLE", 3: "RIGHT", 2: "LEFT", 1: "BOTTOM", 0: "FRONT"}
+
+  if(classId == 0) {
+// front
+btSerial.write(new Buffer('1', 'utf-8'), function(err, bytesWritten) {
+  if (err) console.log(err);
+});
+  } else if(classId == 1) {
+// bottom
+btSerial.write(new Buffer('2', 'utf-8'), function(err, bytesWritten) {
+  if (err) console.log(err);
+});
+  } else if(classId == 2) {
+// left
+btSerial.write(new Buffer('3', 'utf-8'), function(err, bytesWritten) {
+  if (err) console.log(err);
+});
+  } else if(classId == 3) {
+// right
+btSerial.write(new Buffer('4', 'utf-8'), function(err, bytesWritten) {
+  if (err) console.log(err);
+});
+  }
+  
+// TODO: ADD NEUTRAL SUPPORT!
   return classToDirection[classId];
 }
 
