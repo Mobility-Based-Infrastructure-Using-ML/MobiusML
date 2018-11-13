@@ -21,6 +21,7 @@ import {ControllerDataset} from './controller_dataset';
 import * as ui from './ui';
 import * as anim from './animations';
 import {Webcam} from './webcam';
+import {Data} from './data';
 
 // The number of classes we want to predict. In this example, we will be
 // predicting 4 classes for up, down, left, and right.
@@ -31,6 +32,10 @@ const webcam = new Webcam(document.getElementById('webcam'));
 
 // The dataset object where we will store activations.
 const controllerDataset = new ControllerDataset(NUM_CLASSES);
+
+const file = '/data.txt';
+
+var currentDir, currentDate;
 
 let mobilenet;
 let model;
@@ -148,14 +153,24 @@ async function predict() {
     const classId = (await predictedClass.data())[0];
     predictedClass.dispose();
 
+    currentDir = ui.predictClass(classId);
     anim.move(ui.predictClass(classId));
+    write();
     await tf.nextFrame();
   }
   ui.donePredicting();
 }
 
+async function write() {
+  data = await fetch(file);
+  data
+    .then( r => r.text())
+    .then( t => console.log('hi'));
+}
+
 document.getElementById('train').addEventListener('click', async () => {
   ui.trainStatus('Training...');
+  currentDate = new Date();
   await tf.nextFrame();
   await tf.nextFrame();
   isPredicting = false;
@@ -168,7 +183,7 @@ document.getElementById('predict').addEventListener('click', () => {
   predict();
 });
 document.getElementById('saveModel').addEventListener('click', () => {
-  saveModel();
+  saveData(ui.trainStatusElement, );
 })
 
 async function init() {
@@ -195,9 +210,9 @@ async function init() {
 // Function for saving model to a file
 // https://js.tensorflow.org/tutorials/model-save-load.html 
 // Prompts to download 2 files
-async function saveModel() {
+async function saveData(data) {
   console.log('SAVING MODEL')
-  const saveResult = await model.save('downloads://' + __dirname + '/my-model-1');
+  const saveResult = await data.save('downloads://' + __dirname + '/my-model-1');
 }
 
 
