@@ -18,4 +18,4 @@ yarn watch
 ```
 
 ## Video
-[![Video](https://i.imgur.com/FxWnvRP.jpg "MobiusML")](https://www.youtube.com/watch?v=5V_Bs_FV69E)
+[![Video](https://i.imgur.com/FxWnvRP.jpg "MobiusML")](https://www.youtube.com/watch?v=zeTphRB3KK8)
