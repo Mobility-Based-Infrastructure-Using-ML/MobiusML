@@ -92,3 +92,41 @@ Remember that all we're doing here is working with a bunch of images *frames fro
 Let's take all these images, randomize their order, and split them into smaller groups, those groups are what `batches` are. Epochs represent the collection of all those batches. 
 
 Next, we'll add a `callback` function which will let us know how are loss is doing. The loss here is analogous to the idea of an error rate. If the model's doing a good job, that number goes down.
+
+### Let's Test it!
+
+```Javascript
+async function predict() {
+
+  timeend = new Date();
+
+  ui.isPredicting();
+  while (isPredicting) {
+    const predictedClass = tf.tidy(() => { // memory management
+      // get the latest frame from the webcam.
+      const img = webcam.capture();
+
+      // Make a prediction through mobilenet, getting the internal activation of
+      // the mobilenet model.
+      // this is our input
+      const activation = mobilenet.predict(img);
+
+      // Make a prediction through our newly-trained model using the activation
+      // from mobilenet as input.
+      const predictions = model.predict(activation);
+      // Returns the index with the maximum probability. This number corresponds
+      // to the class the model thinks is the most probable given the input.
+      return predictions.as1D().argMax();
+    });
+
+    const classId = (await predictedClass.data())[0];
+    predictedClass.dispose();
+
+    // currentDir = ui.predictClass(classId);
+    anim.move(ui.predictClass(classId));
+    await tf.nextFrame();
+  }
+  ui.donePredicting();
+}
+```
+
