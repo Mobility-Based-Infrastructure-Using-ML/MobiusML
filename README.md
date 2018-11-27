@@ -31,7 +31,7 @@ An image is just a grid of pixels, but each pixel is made up of 3 colors (red, g
 If our image is 127x127, we can make an input tensor of size 127x127x3, the 3 here is to hold the red, green, and blue values.
 So we're done right? Not quite...
 #### The fantastic World of Mobilenets
-We can improve the performance of the model by using a pre-trained[Mobilenet](https://medium.com/@sumit.arora/training-a-neural-network-using-mobilenets-in-tensorflow-for-image-classification-on-android-14f2792f64c1). 
+We can improve the performance of the model by using a pre-trained [Mobilenet](https://medium.com/@sumit.arora/training-a-neural-network-using-mobilenets-in-tensorflow-for-image-classification-on-android-14f2792f64c1). 
 > MobileNets do not provide as good of an accurate model as produced by a full-fledged deep neural network. However, the accuracy is surprisingly very high and good enough for many applications. 
 
 Mobilenets were invented by Google and basically allow us to outsource most of our model's computations to an existing, trained classifier.
@@ -70,3 +70,25 @@ model = tf.sequential({
 ```
 each `tf.layers.dense()` is just an individual layer from our neural network.
 
+### Training Time!
+Now that we have built our network, it's time to train it. This is the part where the network will learn to get good at its job.
+We can use tensorflow.js' built it `fit` method to do so. 
+```Javascript
+model.fit(controllerDataset.xs, controllerDataset.ys, {#
+    batchSize,
+    epochs: ui.getEpochs(),
+    callbacks: {
+      onBatchEnd: async (batch, logs) => {
+        loss = logs.loss.toFixed(5);
+        ui.trainStatus('Loss: ' + loss);
+      }
+    }
+  });
+```
+the first two parameters are **tensors**, the last parameter is our **configuration**, these are also called **hyperparameter**, and there's a couple options that we can define.
+
+Remember that all we're doing here is working with a bunch of images *frames from our camera, some frames look right, others look left, forwards, backwards, you get the idea...* To train the model more efficiently, **we can gives those frames to the network in a specific way**. That's what we're doing here.
+
+Let's take all these images, randomize their order, and split them into smaller groups, those groups are what `batches` are. Epochs represent the collection of all those batches. 
+
+Next, we'll add a `callback` function which will let us know how are loss is doing. The loss here is analogous to the idea of an error rate. If the model's doing a good job, that number goes down.
