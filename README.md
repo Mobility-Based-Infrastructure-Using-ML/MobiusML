@@ -130,3 +130,7 @@ async function predict() {
 }
 ```
 
+This is our predict function. From this, every frame, we will make a prediction as to if the user is looking up right, left or down. 
+Inside of the `while` loop, we use `tf.tidy` again to get rid of unecessary tensors and clean up memory as we go. This improves efficiency drastically.
+First, we call the camera and ask for the latest frame, this is where we'll be getting our information from. Then, we take this frame and let the MobileNet make a prediction on it, which we'll call `activation`. We'll then use this activation and plug it into our neural network, so it can *propagate* though. 
+Our output is what we return: `predictions.as1D().argMax()`, a 1-dimentional vector, containing the maximum value of our tensor.
