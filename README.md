@@ -1,6 +1,6 @@
 # MobiusML
 
-MobiusML is a program built using machine learning to help people with paralisis move around more easily.
+MobiusML is a  neural network originally created by google which has been modified and repurposed to help people with paralisis move their motorized wheelchairs more easily.
 It uses a 3 layer feedforward neural network built off a pretrained mobilenet.
 
 The user registers different reactions for each direction and the network is trained on the data.
