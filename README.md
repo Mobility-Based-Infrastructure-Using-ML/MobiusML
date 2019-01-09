@@ -30,7 +30,7 @@ An image is just a grid of pixels, but each pixel is made up of 3 colors (red, g
 
 If our image is 127x127, we can make an input tensor of size 127x127x3, the 3 here is to hold the red, green, and blue values.
 So we're done right? Not quite...
-#### The fantastic World of Mobilenets
+#### The fantastic world of Mobilenets
 We can improve the performance of the model by using a pre-trained [Mobilenet](https://medium.com/@sumit.arora/training-a-neural-network-using-mobilenets-in-tensorflow-for-image-classification-on-android-14f2792f64c1). 
 > MobileNets do not provide as good of an accurate model as produced by a full-fledged deep neural network. However, the accuracy is surprisingly very high and good enough for many applications. 
 
