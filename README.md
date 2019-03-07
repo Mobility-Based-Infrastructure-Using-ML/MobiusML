@@ -74,7 +74,7 @@ each `tf.layers.dense()` is just an individual layer from our neural network.
 Now that we have built our network, it's time to train it. This is the part where the network will learn to get good at its job.
 We can use tensorflow.js' built it `fit` method to do so. 
 ```Javascript
-model.fit(controllerDataset.xs, controllerDataset.ys, {#
+model.fit(controllerDataset.xs, controllerDataset.ys, {
     batchSize,
     epochs: ui.getEpochs(),
     callbacks: {
